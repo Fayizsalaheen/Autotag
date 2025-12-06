@@ -1,0 +1,43 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/swagger/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "autotag-ai",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/swagger/{everything}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}", // ⬅️ تم التعديل هنا (مسار الخدمة الداخلية)
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "autotag-ai",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{everything}", // ⬅️ تم التعديل هنا (مسار البوابة)
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:9001"
+  },
+  "SwaggerEndPoints": [
+    {
+      "Key": "Image AI Service",
+      "Config": [
+        {
+          "Name": "ImageAIService API V1",
+          "Version": "v1",
+          "Url": "http://autotag-ai:8080/swagger/v1/swagger.json" // ⬅️ هذا السطر صحيح ولا يحتاج إلى تغيير
+        }
+      ]
+    }
+  ]
+}

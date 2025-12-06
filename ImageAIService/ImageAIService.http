@@ -1,0 +1,6 @@
+@ImageAIService_HostAddress = http://localhost:5199
+
+GET {{ImageAIService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

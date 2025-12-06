@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+
+    db:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        container_name: autotag-sql
+        restart: always
+        environment:
+            SA_PASSWORD: "MtStrongPasswordIs!@#2052002" 
+            ACCEPT_EULA: "Y"
+        volumes:
+            - sqlserver_data:/var/opt/mssql
+        ports:
+            - "1433:1433" 
+
+    image-ai-service:
+        build:
+            context: .
+            dockerfile: ImageAIService/Dockerfile
+        container_name: autotag-ai
+        depends_on:
+            - db 
+        environment:
+            ASPNETCORE_ENVIRONMENT: Development
+            ConnectionStrings__DefaultConnection: "Server=db;Database=AutotagDB;User Id=SA;Password=MtStrongPasswordIs!@#2052002;TrustServerCertificate=True"
+        ports:
+            - "5001:8080"  
+
+    api-gateway:
+        build:
+            context: .
+            dockerfile: APIGatewayService/Dockerfile
+        container_name: autotag-gateway
+        depends_on:
+            - image-ai-service 
+            - db  
+        ports:
+            - "8088:8080"  
+
+volumes:
+    sqlserver_data:

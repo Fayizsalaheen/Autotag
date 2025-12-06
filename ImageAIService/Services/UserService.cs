@@ -67,10 +67,23 @@ namespace ImageAIService.Services
             return deleted > 0;
         }
 
-        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        public async Task<IEnumerable<GetAllUsersDto>> GetAllUsersAsync(int pageNumber, int pageSize)
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .Select(u => new GetAllUsersDto
+                {
+                    Id = u.Id,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Email = u.Email,
+                    Username = u.Username,
+                    IsActive = u.IsActive
+                })
+                .ToListAsync();
         }
+
 
         public async Task<User?> GetUserByIdAsync(int id)
         {
@@ -155,4 +168,6 @@ namespace ImageAIService.Services
 
         //}
     }
+
+    
 }

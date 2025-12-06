@@ -7,7 +7,7 @@ namespace ImageAIService.Interface
     {
         Task<UserResponseDto>  CreateUserAsync (CreateUserDto user);
         Task<User?> GetUserByIdAsync (int id);
-        Task<IEnumerable<User>> GetAllUsersAsync();
+        Task<IEnumerable<GetAllUsersDto>> GetAllUsersAsync();
         Task<bool> DeleteUserAsync (int id);
         Task<bool> UpdateUserAsync (User user);
         Task<bool> ResetPersonPassword(ResetUserPasswordInputDTO input);

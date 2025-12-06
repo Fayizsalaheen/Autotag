@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ImageAIService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31f06f40d86e65e9e933b6693dc58bb90dcd12fc")]
 [assembly: System.Reflection.AssemblyProductAttribute("ImageAIService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ImageAIService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
